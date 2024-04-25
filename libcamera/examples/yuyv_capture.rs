@@ -9,16 +9,10 @@ use libcamera::{
     framebuffer::AsFrameBuffer,
     framebuffer_allocator::{FrameBuffer, FrameBufferAllocator},
     framebuffer_map::MemoryMappedFrameBuffer,
-    // my_struct,
     pixel_format::PixelFormat,
     properties,
     stream::StreamRole,
 };
-// use serde::{Deserialize, Serialize};
-// use serde_json::Value;
-
-// mod my_struct;
-// use my_struct;
 
 const PIXEL_FORMAT_YUYV: PixelFormat = PixelFormat::new(u32::from_le_bytes([b'Y', b'U', b'Y', b'V']), 0);
 // RGB888
