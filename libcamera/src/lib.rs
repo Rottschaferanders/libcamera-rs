@@ -9,6 +9,7 @@ pub mod framebuffer_allocator;
 pub mod framebuffer_map;
 pub mod geometry;
 pub mod logging;
+pub mod my_struct;
 pub mod pixel_format;
 pub mod request;
 pub mod stream;
