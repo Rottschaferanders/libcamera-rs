@@ -42,9 +42,6 @@ fn main() {
     // This will generate a default configuration for each specified role.
     let mut cfgs = cam.generate_configuration(&[StreamRole::ViewFinder]).unwrap();
 
-    // Use YUYV format for capturing.
-    // cfgs.get_mut(0).unwrap().set_pixel_format(PixelFormat::YUYV);
-    // cfgs.get_mut(0).unwrap().set_pixel_format(PIXEL_FORMAT_YUYV);
     cfgs.get_mut(0).unwrap().set_pixel_format(pixel_format);
     let image_size = libcamera::geometry::Size {
         width: 3200,
@@ -52,10 +49,10 @@ fn main() {
     };
     cfgs.get_mut(0).unwrap().set_size(image_size);
 
-    let size = cfgs.get(0).unwrap().get_size();
-    let width = size.width;
-    let height = size.height;
-    println!("Size: W: {}, H: {}", size.width, size.height);
+    // let size = cfgs.get(0).unwrap().get_size();
+    // let width = size.width;
+    // let height = size.height;
+    println!("Size: W: {}, H: {}", image_size.width, image_size.height);
 
     println!("Generated config: {:#?}", cfgs);
     match cfgs.validate() {
@@ -66,8 +63,6 @@ fn main() {
 
     assert_eq!(
         cfgs.get(0).unwrap().get_pixel_format(),
-        // PIXEL_FORMAT_YUYV,
-        // PIXEL_FORMAT_RGB888,
         pixel_format,
         "RGB888 is not supported by the camera"
     );
@@ -88,6 +83,7 @@ fn main() {
         .map(|buf| MemoryMappedFrameBuffer::new(buf).unwrap())
         .collect::<Vec<_>>();
 
+    // Create capture requests and attach buffers
     let mut reqs = buffers
         .into_iter()
         .map(|buf| {

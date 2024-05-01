@@ -22,6 +22,12 @@ No other special dependencies are needed. All crates can be built from the root 
 
 ## Running examples
 
+1. jpeg_capture
+2. list_cameras
+3. logging
+4. video_capture
+5. yuyv_capture
+
 Print `libcamera` version using only `libcamera-sys` ([code](./libcamera-sys/examples/version.rs)):
 ```console
 osboxes@osboxes:~/libcamera-rs$ cargo run --example version
